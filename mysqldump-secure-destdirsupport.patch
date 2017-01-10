@@ -1,0 +1,51 @@
+--- Makefile.orig	2016-08-18 22:07:28.000000000 +0200
++++ Makefile	2017-01-10 17:38:39.973000000 +0100
+@@ -87,35 +87,35 @@
+ 	@echo ""
+ 
+ 	@# Create directories
+-	${MKDIR_P} $(BINDIR)
+-	${MKDIR_P} $(ETCDIR)
+-	${MKDIR_P} $(MANDIR)/man1
++	${MKDIR_P} $(DESTDIR)$(BINDIR)
++	${MKDIR_P} $(DESTDIR)$(ETCDIR)
++	${MKDIR_P} $(DESTDIR)$(MANDIR)/man1
+ 
+ 	@# Install binary
+-	install -m 0755 build/$(DUMP_SH) $(BINDIR)/$(DUMP_SH)
++	install -m 0755 build/$(DUMP_SH) $(DESTDIR)$(BINDIR)/$(DUMP_SH)
+ 
+ 	@# Install config file and create backup if there is one already
+-	install -b -m 0400 build/$(DUMP_CONF) $(ETCDIR)/$(DUMP_CONF)
++	install -b -m 0400 build/$(DUMP_CONF) $(DESTDIR)$(ETCDIR)/$(DUMP_CONF)
+ 
+ 	@# Install config file and create backup if there is one already
+-	install -b -m 0400 build/$(DUMP_CNF) $(ETCDIR)/$(DUMP_CNF)
++	install -b -m 0400 build/$(DUMP_CNF) $(DESTDIR)$(ETCDIR)/$(DUMP_CNF)
+ 	@echo ""
+ 
+ 	@# Install man pages
+-	install -b -m 0644 build/$(MAN_PAGE) $(MANDIR)/man1/$(MAN_PAGE)
++	install -b -m 0644 build/$(MAN_PAGE) $(DESTDIR)$(MANDIR)/man1/$(MAN_PAGE)
+ 	@echo ""
+ 
+ 	@echo "Installation complete:"
+-	@echo "    $(BINDIR)/$(DUMP_SH)"
+-	@echo "    $(ETCDIR)/$(DUMP_CONF)"
+-	@echo "    $(ETCDIR)/$(DUMP_CNF)"
+-	@echo "    $(MANDIR)/$(MAN_PAGE)"
++	@echo "    $(DESTDIR)$(BINDIR)/$(DUMP_SH)"
++	@echo "    $(DESTDIR)$(ETCDIR)/$(DUMP_CONF)"
++	@echo "    $(DESTDIR)$(ETCDIR)/$(DUMP_CNF)"
++	@echo "    $(DESTDIR)$(MANDIR)/$(MAN_PAGE)"
+ 	@echo ""
+ 	@echo "----------------------------------------------------------------------"
+ 	@echo "Note:"
+ 	@echo ""
+-	@echo "Adjust values in $(ETCDIR)/$(DUMP_CONF)"
+-	@echo "Adjust values in $(ETCDIR)/$(DUMP_CNF)"
++	@echo "Adjust values in $(DESTDIR)$(ETCDIR)/$(DUMP_CONF)"
++	@echo "Adjust values in $(DESTDIR)$(ETCDIR)/$(DUMP_CNF)"
+ 	@echo "----------------------------------------------------------------------"
+ 	@echo ""
+ 
