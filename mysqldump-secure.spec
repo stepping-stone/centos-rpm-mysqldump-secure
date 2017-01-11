@@ -33,12 +33,16 @@ Summary:        APOSIX compliant wrapper script for mysqldump
 License:        MIT
 URL:            https://mysqldump-secure.org
 Source0:        https://github.com/cytopia/%{name}/archive/%{version}.tar.gz
+Source1:        %{name}.service
+Source2:        %{name}.timer
 Patch0:         %{name}-destdirsupport.patch
 
 BuildArch:      noarch
 
-#BuildRequires:  
+BuildRequires: systemd
+
 Requires:       mysql
+%{?systemd_requires}
 
 %description
 mysqldump-secure is a POSIX compliant wrapper script for mysqldump with
@@ -67,12 +71,30 @@ make %{?_smp_mflags}
 rm -rf $RPM_BUILD_ROOT
 %make_install
 
+# Install the systemd service unit
+install -d %{buildroot}/%{_unitdir}
+install %{SOURCE1} %{buildroot}/%{_unitdir}
+install %{SOURCE2} %{buildroot}/%{_unitdir}
+
+
+%post
+%systemd_post %{name}.timer
+
+
+%preun
+%systemd_preun %{name}.timer
+
+
+%postun
+%systemd_postun %{name}.timer
+
 
 %files
 %doc
 %{_sysconfdir}/*
 %{_bindir}/*
 %{_mandir}/man1/*
+%{_unitdir}/*
 
 
 %changelog
