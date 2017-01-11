@@ -12,7 +12,11 @@ yum install mysqldump-secure
 ```
 
 ### Configuration
-
+[Configure](https://mysqldump-secure.org/documentation/configuration.php) the MySQL/MariaDB credentials and mysqldump-secure options:
+```bash
+vi /etc/mysqldump-secure.cnf
+vi /etc/mysqldump-secure.conf
+```
 
 ### Running mysqldump-secure through systemd
 There's a systemd timer unit available which runs mysqldump-secure once per day at midnight [<code>OnCalendar=daily</code>](https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events) per default. To enable it:
