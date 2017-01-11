@@ -28,7 +28,7 @@
 Name:           mysqldump-secure
 Version:        0.16.3
 Release:        1%{?dist}
-Summary:        APOSIX compliant wrapper script for mysqldump
+Summary:        A POSIX compliant wrapper script for mysqldump
 
 License:        MIT
 URL:            https://mysqldump-secure.org
@@ -39,7 +39,7 @@ Patch0:         %{name}-destdirsupport.patch
 
 BuildArch:      noarch
 
-BuildRequires: systemd
+BuildRequires:  systemd
 
 Requires:       mysql
 %{?systemd_requires}
