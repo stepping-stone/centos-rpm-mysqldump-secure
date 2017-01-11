@@ -1,0 +1,7 @@
+[Unit]
+Description=Dump MySQL/MariaDB databases with mysqldump-secure
+Documentation=man:mysqldump-secure(1) https://mysqldump-secure.org
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mysqldump-secure

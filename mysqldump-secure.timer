@@ -1,0 +1,9 @@
+[Unit]
+Description=Run mysqldump-secure daily
+
+[Timer]
+# Run every day at midnight ("*-*-* 00:00:00")
+OnCalendar=daily
+
+[Install]
+WantedBy=timers.target
