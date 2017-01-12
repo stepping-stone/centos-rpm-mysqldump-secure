@@ -91,7 +91,7 @@ install %{SOURCE2} %{buildroot}/%{_unitdir}
 
 %files
 %doc
-%{_sysconfdir}/*
+%config(noreplace) %{_sysconfdir}/*
 %{_bindir}/*
 %{_mandir}/man1/*
 %{_unitdir}/*
