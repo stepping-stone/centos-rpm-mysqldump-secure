@@ -25,7 +25,7 @@ There's a systemd timer unit available which runs mysqldump-secure once per day 
 systemctl enable mysqldump-secure.timer
 systemctl start mysqldump-secure.timer
 
-systemctl list-timers
+systemctl list-timers mysqldump-secure.timer
 ```
 
 In case you might want to change the start time, override the [<code>OnCalendar</code>](https://www.freedesktop.org/software/systemd/man/systemd.timer.html#OnCalendar=) directive:
@@ -36,4 +36,27 @@ systemctl edit mysqldump-secure.timer
 ```INI
 [Timer]
 OnCalendar=*-*-* HH:MM:SS
+```
+
+If you want to run the script as an unprivileged user (<code>backup</code> in the following example), override the systemd <code>mysqldump-secure.service</code> and add the systemd [<code>User</code> and <code>Group</code>](https://www.freedesktop.org/software/systemd/man/systemd.exec.html#User=) directives:
+```bash
+systemctl edit mysqldump-secure.service
+```
+```INI
+[Service]
+User=backup
+Group=backup
+```
+
+The unprivileged <code>backup</code> user also needs to be able to read the appropriate configuration files:
+```bash
+chown backup:backup /etc/mysqldump-secure.c*
+touch /var/log/mysqldump-secure.nagios.log
+chown backup:backup /var/log/mysqldump-secure.nagios.log
+```
+
+Test the script by starting the systemd <code>mysqldump-secure.service</code>:
+```bash
+systemctl start mysqldump-secure.service
+journalctl -u mysqldump-secure.service
 ```
