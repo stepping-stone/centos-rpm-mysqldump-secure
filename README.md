@@ -35,6 +35,8 @@ systemctl edit mysqldump-secure.timer
 
 ```INI
 [Timer]
+# Turn off the original OnCalender time and date specification
+OnCalendar=
 OnCalendar=*-*-* HH:MM:SS
 ```
 
