@@ -4,8 +4,8 @@
  # Will be created automatically if it does not exist.
  #
  # Default value: "##INSTALL_PREFIX##/var/mysqldump-secure"
--DUMP_DIR="/var/backup/mysql/dump"
-+DUMP_DIR="/var/mysqldump-secure"
++DUMP_DIR="/var/backup/mysql/dump"
+-DUMP_DIR="/var/mysqldump-secure"
  
  
  
@@ -13,8 +13,8 @@
  # IGNORE="mysql"        # <-- Ignore by matching the exact name
  #
  # Default value: "" <-- do not ignore anything
--IGNORE="information_schema sys performance_schema"
-+IGNORE="information_schema performance_schema"
++IGNORE="information_schema sys performance_schema"
+-IGNORE="information_schema performance_schema"
  
  
  
@@ -22,8 +22,8 @@
  # 3: trace (info + debug + trace), like -vv for output
  #
  # Default value: 0 (turned off)
--LOG=0
-+LOG=2
++LOG=0
+-LOG=2
  
  
  # Logfile
@@ -31,8 +31,8 @@
  # Delete old files
  # 1: yes
  # 0: no (Default)
--DELETE=1
-+DELETE=0
++DELETE=1
+-DELETE=0
  
  
  # Choose the binary to use for deletion
@@ -40,8 +40,8 @@
  # * DELETE_IF_OLDER=3d  # older than 3 days
  # * DELETE_IF_OLDER=3   # older than 3 hours
  #
--DELETE_IF_OLDER=7d		# older than 30 days
-+DELETE_IF_OLDER=30d		# older than 30 days
++DELETE_IF_OLDER=7d		# older than 30 days
+-DELETE_IF_OLDER=30d		# older than 30 days
  
  
  
@@ -49,8 +49,8 @@
  # Enable Nagios Logfile
  # 1: yes
  # 0: no (Default)
--NAGIOS_LOG=0
-+NAGIOS_LOG=1
++NAGIOS_LOG=0
+-NAGIOS_LOG=1
  
  # Only applicable if NAGIOS_LOG = 1
  #
