@@ -27,7 +27,7 @@
 
 Name:           mysqldump-secure
 Version:        0.16.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A POSIX compliant wrapper script for mysqldump
 
 License:        MIT
@@ -115,6 +115,8 @@ exit 0
 
 
 %changelog
+* Fri Jan 04 2019 Till Wegmüller <till.wegmueller@stepping-stone.ch> - 0.16.3-2
+- Switch to use user per default
 * Tue Jan 10 2017 Christian Affolter <c.affolter@stepping-stone.ch> - 0.16.3-1
 - Initial release
 
