@@ -80,6 +80,7 @@ install -d %{buildroot}/%{_unitdir}
 install -d %{buildroot}/var/backup/mysql
 install %{SOURCE1} %{buildroot}/%{_unitdir}
 install %{SOURCE2} %{buildroot}/%{_unitdir}
+install -d %{buildroot}/var/log
 touch %{buildroot}/var/log/mysqldump-secure.nagios.log
 
 %pre
