@@ -5,3 +5,7 @@ Documentation=man:mysqldump-secure(1) https://mysqldump-secure.org
 [Service]
 Type=oneshot
 ExecStart=/usr/bin/mysqldump-secure
+
+[Service]
+User=mysql-backup
+Group=mysql-backup

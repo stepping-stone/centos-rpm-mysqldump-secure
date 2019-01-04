@@ -36,10 +36,13 @@ Source0:        https://github.com/cytopia/%{name}/archive/%{version}.tar.gz
 Source1:        %{name}.service
 Source2:        %{name}.timer
 Patch0:         %{name}-destdirsupport.patch
+Patch1:         %{name}-config.patch
 
 BuildArch:      noarch
 
 BuildRequires:  systemd
+BuildRequires:	which
+BuildRequires:	make
 
 Requires:       mysql
 %{?systemd_requires}
@@ -58,6 +61,7 @@ race conditions.
 %prep
 %setup -q
 %patch0
+%patch1
 
 
 %build
@@ -73,9 +77,17 @@ rm -rf $RPM_BUILD_ROOT
 
 # Install the systemd service unit
 install -d %{buildroot}/%{_unitdir}
+install -d %{buildroot}/var/backup/mysql
 install %{SOURCE1} %{buildroot}/%{_unitdir}
 install %{SOURCE2} %{buildroot}/%{_unitdir}
+touch %{buildroot}/var/log/mysqldump-secure.nagios.log
 
+%pre
+getent group mysql-backup >/dev/null || groupadd -r mysql-backup
+getent passwd mysql-backup >/dev/null || \
+    useradd -r -g mysql-backup -d /var/backup/mysql -s /sbin/nologin \
+    -c "The Account under which mysqldump-secure will be run" mysql-backup
+exit 0
 
 %post
 %systemd_post %{name}.timer
@@ -90,11 +102,16 @@ install %{SOURCE2} %{buildroot}/%{_unitdir}
 
 
 %files
+%defattr(-,mysql-backup,mysql-backup)
 %doc
 %config(noreplace) %{_sysconfdir}/*
+%config(noreplace) /var/log/mysqldump-secure.nagios.log
+%config(noreplace) /var/log/mysqldump-secure.log
+%dir /var/backup/mysql
 %{_bindir}/*
 %{_mandir}/man1/*
 %{_unitdir}/*
+
 
 
 %changelog

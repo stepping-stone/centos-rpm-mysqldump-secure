@@ -1,0 +1,56 @@
+--- etc/mysqldump-secure.conf	2019-01-04 14:37:40.629815649 +0100
++++ etc/mysqldump-secure.conf.orig	2019-01-04 14:32:52.766451719 +0100
+@@ -48,7 +48,7 @@
+ # Will be created automatically if it does not exist.
+ #
+ # Default value: "##INSTALL_PREFIX##/var/mysqldump-secure"
+-DUMP_DIR="/var/backup/mysql/dump"
++DUMP_DIR="/var/mysqldump-secure"
+ 
+ 
+ 
+@@ -210,7 +210,7 @@
+ # IGNORE="mysql"        # <-- Ignore by matching the exact name
+ #
+ # Default value: "" <-- do not ignore anything
+-IGNORE="information_schema sys performance_schema"
++IGNORE="information_schema performance_schema"
+ 
+ 
+ 
+@@ -464,7 +464,7 @@
+ # 3: trace (info + debug + trace), like -vv for output
+ #
+ # Default value: 0 (turned off)
+-LOG=0
++LOG=2
+ 
+ 
+ # Logfile
+@@ -669,7 +669,7 @@
+ # Delete old files
+ # 1: yes
+ # 0: no (Default)
+-DELETE=1
++DELETE=0
+ 
+ 
+ # Choose the binary to use for deletion
+@@ -709,7 +709,7 @@
+ # * DELETE_IF_OLDER=3d  # older than 3 days
+ # * DELETE_IF_OLDER=3   # older than 3 hours
+ #
+-DELETE_IF_OLDER=7d		# older than 30 days
++DELETE_IF_OLDER=30d		# older than 30 days
+ 
+ 
+ 
+@@ -725,7 +725,7 @@
+ # Enable Nagios Logfile
+ # 1: yes
+ # 0: no (Default)
+-NAGIOS_LOG=0
++NAGIOS_LOG=1
+ 
+ # Only applicable if NAGIOS_LOG = 1
+ #
