@@ -1,5 +1,5 @@
---- etc/mysqldump-secure.conf	2019-01-04 14:37:40.629815649 +0100
-+++ etc/mysqldump-secure.conf.orig	2019-01-04 14:32:52.766451719 +0100
+--- etc/mysqldump-secure.conf.orig	2019-01-04 14:32:52.766451719 +0100
++++ etc/mysqldump-secure.conf	2019-01-04 14:37:40.629815649 +0100
 @@ -48,7 +48,7 @@
  # Will be created automatically if it does not exist.
  #
